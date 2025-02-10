@@ -1,0 +1,25 @@
+List of Fixes Applied to the Code:
+
+1) In function calculateStateTax: Fixed incorrect state tax calculation.
+   - Changed: let stateTaxMA = stateTaxableIncome / stateTaxRateMA;
+   - To: let stateTaxMA = stateTaxableIncome * stateTaxRateMA;
+
+2) In function federalTax: Fixed incorrect taxable amount calculation.
+   - Changed: const taxableAmount = upperLimit + bracket.lowerBound;
+   - To: const taxableAmount = upperLimit - bracket.lowerBound;
+
+3) In function calculateStateTax: Fixed incorrect deduction application.
+   - Changed: let stateTaxableIncome = income + getDeductions(filingStatus, mortgage, studentLoan, medicalExpenses);
+   - To: let stateTaxableIncome = income - getDeductions(filingStatus, mortgage, studentLoan, medicalExpenses);
+
+4) In function federalTax: Corrected tax calculation logic.
+   - Changed: if (TaxBrackets===undefined)
+   - To: if (!TaxBrackets)
+
+5) In function federalTax: Fixed loop logic when applying tax brackets.
+   - Changed: taxableAmount = upperLimit + bracket.lowerBound;
+   - To: taxableAmount = upperLimit - bracket.lowerBound;
+
+6) In function calculateStateTax: Fixed a typo in Math function.
+   - Changed: Math.dmax(0, stateTaxMA);
+   - To: Math.max(0, stateTaxMA);
